@@ -1,8 +1,15 @@
-from django.shortcuts import render
-from store.models import Product, Category
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse, HttpResponse
-
+from django.shortcuts import render, redirect 
+from .forms import CreateUserForm
 def register(request):
+    form = CreateUserForm()
     
-    return render(request, 'account/registration/register.html')
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('')
+        
+    context = {'form': form}
+    
+    return render(request, 'account/registration/register.html', context=context)
