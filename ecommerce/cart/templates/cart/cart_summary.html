@@ -59,7 +59,7 @@
 
                   &nbsp; 
                   
-                  <select id="">
+                  <select id="select{{product.id}}">
                   
                     <option selected>
                   
@@ -79,7 +79,7 @@
                   
                   <br> <br>
 
-                  <button type="button" id="update-button" value='{{product.id}}'
+                  <button type="button" id="update-button" data-index='{{product.id}}'
                     class="btn btn-primary btn-sm update-button">
                     Update
                   
@@ -136,7 +136,7 @@
         },
 
         success: function(json){
-            location.reload()
+            location.reload(true)
             document.getElementById('cart-qty').textContent = json.qty
             document.getElementById('total').textContent = json.total
         },
@@ -148,22 +148,25 @@
   });
 
 
-    $(document).on('click', '#delete-button', function(e) {
+  $(document).on('click', '#update-button', function(e) {
     e.preventDefault();
+
+    var theproductid = $(this).data('index');
 
     $.ajax({
         type:'POST',
-        url:'{% url 'cart_delete' %}',
+        url:'{% url 'cart_update' %}',
         data: {
             product_id: $(this).data('index'),
+            product_quantity: $('#select' + theproductid + ' option:selected').text(),
             csrfmiddlewaretoken: '{{csrf_token}}',
             action: 'post'
         },
 
         success: function(json){
-            location.reload()
-            document.getElementById('cart-qty').textContent = json.qty
-            document.getElementById('total').textContent = json.total
+            location.reload(true)
+            document.getElementById('cart-qty').textContent = json.total_qty
+            document.getElementById('total').textContent = json.total_price
         },
 
         error: function(xhr, errmsg, err){
