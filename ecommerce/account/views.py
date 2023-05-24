@@ -28,7 +28,7 @@ def register(request):
             message = render_to_string('account/registration/email_verification.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(user.pk),
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': user_tokenizer_generate.make_token(user),
             })
 
