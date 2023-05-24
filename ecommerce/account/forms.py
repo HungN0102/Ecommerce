@@ -14,6 +14,8 @@ class CreateUserForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            raise forms.validationError('This email is used!')
+            raise forms.ValidationError('This email is used!')
         if len(email) >= 350:
             raise forms.ValidationError('This email is too long!')
+        
+        return email

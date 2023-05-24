@@ -6,6 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from .token import user_tokenizer_generate
 
 from django.template.loader import render_to_string
+from django.core.mail import send_mail
 from django.utils.encoding import force_bytes, force_str    
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
@@ -31,9 +32,15 @@ def register(request):
                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': user_tokenizer_generate.make_token(user),
             })
+            #user.email_user(subject=subject, message=message)
 
-            user.email_user(subject=subject, message=message)
-            
+            send_mail(
+                "Subject here",
+                message,
+                "sudokaname070899@gmail.com",
+                [user.email],
+                fail_silently=False,
+            )
             return redirect('email_verification_sent')
     context = {'form': form}
     
