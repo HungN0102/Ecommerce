@@ -1,5 +1,22 @@
 {% extends 'store/base.html'%}
-
+{% load static %}
 {% block content %}
-<h1>Verification Sent To Email</h1>
+<style>
+    body {
+        background-color: grey;
+    }
+</style>
+<body>
+    <br>
+    <br>
+    <div class="container bg-white shadow-md p-5 form-layout">
+        <div class="text-center">
+            <i class="fa fa-envelope fa-3x" aria-hidden="true"></i>
+            <h5><strong>An Verification Email Has Been Sent</strong></h5>
+            <hr>
+            <p>Please have a look!</p>
+        </div>
+    </div>
+</body>
+
 {% endblock %}

@@ -1,1 +1,22 @@
-<h1>Verified</h1>
+{% extends 'store/base.html'%}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color: grey;
+    }
+</style>
+<body>
+    <br>
+    <br>
+    <div class="container bg-white shadow-md p-5 form-layout">
+        <div class="text-center">
+            <i class="fa fa-check fa-3x" aria-hidden="true"></i>
+            <h5><strong>Your Account Has Been Verified</strong></h5>
+            <hr>
+            <p>Enjoy!</p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
