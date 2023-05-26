@@ -13,6 +13,15 @@ urlpatterns = [
     # login
     path('my-login', views.my_login, name='my_login'),
     
+    # logout
+    path('my-logout', views.user_logout, name='user_logout'),
+    
     # dashboard
     path('dashboard', views.dashboard, name='dashboard'),
+    
+    # management
+    path('track-orders', views.track_orders, name='track_orders'),
+    path('profile-management', views.profile_management, name='profile_management'),
+    path('manage-shipping', views.manage_shipping, name='manage_shipping'),
+    path('delete-account', views.delete_account, name='delete_account'),
 ]
