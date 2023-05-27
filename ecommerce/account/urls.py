@@ -18,7 +18,7 @@ urlpatterns = [
     path('my-logout', views.user_logout, name='user_logout'),
     
     # dashboard
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('', views.dashboard, name='dashboard'),
     
     # management
     path('track-orders', views.track_orders, name='track_orders'),
@@ -27,9 +27,9 @@ urlpatterns = [
     path('delete-account', views.delete_account, name='delete_account'),
     
     # password management views
-    path('reset-password', auth_views.PasswordResetView.as_view(), name='reset_password'), #submit our email form
-    path('reset-password-sent', auth_views.PasswordResetDoneView.as_view(), name='reset_password_done'), #submit our email form
-    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('reset-password', auth_views.PasswordResetView.as_view(template_name='account/password/password_reset.html'), name='reset_password'), #submit our email form
+    path('reset-password-sent', auth_views.PasswordResetDoneView.as_view(template_name='account/password/password_reset_sent.html'), name='reset_password_done'), #submit our email form
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='account/password/password_reset_form.html'), name='password_reset_confirm'),
+    path('reset-password-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='account/password/password_reset_complete.html'), name='password_reset_complete'),
     
 ]
