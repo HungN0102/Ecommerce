@@ -48,3 +48,4 @@ class OrderItem(models.Model):
     
     def __str__(self):
         return 'Order Item - #' + str(self.id)
+    
