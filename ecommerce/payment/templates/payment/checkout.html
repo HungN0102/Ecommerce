@@ -161,10 +161,12 @@
     
                 success: function(json){
                     //document.getElementById('cart-qty').textContent = json.qty
+                    window.location.replace("{% url 'payment-success' %}");
                 },
     
                 error: function(xhr, errmsg, err){
                     //console.log('wrong')
+                    window.location.replace("{% url 'payment-failed' %}");
                 }
             });
         })
